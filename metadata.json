@@ -1,0 +1,7 @@
+{
+  "name": "eticaret",
+  "description": "E-ticaret ürün hazırlığı, analizi, profesyonel fotoğraf oluşturma ve tanıtım videoları için yapay zeka destekli profesyonel araç.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
