@@ -22,8 +22,8 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ message }) => {
         </div>
         
         <div className="space-y-3">
-          <h3 className="text-2xl font-black text-slate-900 tracking-tight">Yapay Zeka Çalışıyor</h3>
-          <p className="text-sm font-black text-slate-900 leading-relaxed px-4">{message}</p>
+          <h3 className="text-2xl font-black text-black tracking-tight">Yapay Zeka Çalışıyor</h3>
+          <p className="text-sm font-black text-black leading-relaxed px-4">{message}</p>
         </div>
         
         <div className="pt-4 flex justify-center gap-2">
