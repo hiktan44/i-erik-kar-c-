@@ -12,8 +12,8 @@ export const analyzeProduct = async (
     technicalDocs?: { data: string; mimeType: string }[];
   }
 ): Promise<ProductContent> => {
-  // Vite ortam değişkeni - .env dosyasında VITE_GEMINI_API_KEY olarak tanımlanmalı
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  // Runtime environment variable (Netlify injects this)
+  const apiKey = (window as any).ENV_VITE_GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey) {
     throw new Error('VITE_GEMINI_API_KEY environment variable is not set. Please add it to your .env file or Netlify environment variables.');
@@ -111,7 +111,7 @@ export const generateProductImage = async (
   aspectRatio: AspectRatio = AspectRatio.SQUARE,
   imageSize: ImageSize = ImageSize.K1
 ): Promise<string> => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey = (window as any).ENV_VITE_GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey) {
     throw new Error('VITE_GEMINI_API_KEY environment variable is not set.');
@@ -179,7 +179,7 @@ export const generateProductVideo = async (
   musicStyle: string = 'None',
   aspectRatio: '16:9' | '9:16' = '16:9'
 ): Promise<string> => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey = (window as any).ENV_VITE_GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey) {
     throw new Error('VITE_GEMINI_API_KEY environment variable is not set.');
