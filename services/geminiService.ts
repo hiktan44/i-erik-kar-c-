@@ -13,7 +13,12 @@ export const analyzeProduct = async (
   }
 ): Promise<ProductContent> => {
   // Vite ortam değişkeni - .env dosyasında VITE_GEMINI_API_KEY olarak tanımlanmalı
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyCc41M3nMQp2eyUujKeoQiEJb-jqrjWouE';
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('VITE_GEMINI_API_KEY environment variable is not set. Please add it to your .env file or Netlify environment variables.');
+  }
+
   const ai = new GoogleGenAI({ apiKey });
 
   const imageParts = images.map(img => ({
@@ -106,7 +111,12 @@ export const generateProductImage = async (
   aspectRatio: AspectRatio = AspectRatio.SQUARE,
   imageSize: ImageSize = ImageSize.K1
 ): Promise<string> => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyCc41M3nMQp2eyUujKeoQiEJb-jqrjWouE';
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('VITE_GEMINI_API_KEY environment variable is not set.');
+  }
+
   const ai = new GoogleGenAI({ apiKey });
 
   const response = await ai.models.generateContent({
@@ -169,7 +179,12 @@ export const generateProductVideo = async (
   musicStyle: string = 'None',
   aspectRatio: '16:9' | '9:16' = '16:9'
 ): Promise<string> => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyCc41M3nMQp2eyUujKeoQiEJb-jqrjWouE';
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('VITE_GEMINI_API_KEY environment variable is not set.');
+  }
+
   const ai = new GoogleGenAI({ apiKey });
 
   const enhancedPrompt = `Product promotion: ${prompt}. ${musicStyle !== 'None' ? `Music style: ${musicStyle}.` : ''} Professional e-commerce ad, smooth camera movements.`;
